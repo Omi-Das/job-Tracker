@@ -27,7 +27,7 @@
         </div>
 
         <div class="bg-white border border-gray-200 p-6 rounded-xl shadow-sm">
-            <p class="text-gray-500 font-semibold uppercase tracking-wider text-sm">Interviewing</p>
+            <p class="text-gray-500 font-semibold uppercase tracking-wider text-sm">Interview</p>
             <p id="interviewCount" class="text-4xl font-black text-emerald-500 mt-2">0</p>
         </div>
 
@@ -40,12 +40,19 @@
 
 <hr class="border-gray-200 my-4">
 
-<main class="w-[90%] md:w-[80%] mx-auto ">
-       <h4 class="text-4xl mt-[24px] mb-[24px] font-bold text-indigo-700 mb-8">Available Jobs</h4>
-    <div class="flex justify-between items-center mb-8">
-        <div class="flex p-1 bg-gray-100 rounded-lg gap-3">
+<main class="w-[90%] md:w-[80%] mx-auto">
+    <div class="flex justify-between items-center mt-6 mb-6">
+        <h4 class="text-3xl font-bold text-indigo-800">Available Jobs</h4>
+        <div class="text-right">
+            <span id="tab-job-count" class="text-[16px] font-medium text-gray-500">8</span>
+            <span class="text-gray-500 text-[16px] font-medium">Jobs</span>
+        </div>
+    </div>
+
+    <div class="flex justify-start items-center mb-8">
+        <div class="flex p-1 bg-gray-100 rounded-lg gap-2">
             <button id="all-filter-btn" 
-                class="px-6 py-2.5 rounded-md text-sm font-bold transition-all bg-indigo-600 text-white shadow-md">
+                class="px-6 py-2.5 rounded-md text-sm font-bold transition-all bg-indigo-600 text-white shadow-sm">
                 All Jobs
             </button>
             <button id="interview-filter-btn" 
@@ -57,10 +64,8 @@
                 Rejected
             </button>
         </div>
-
+    </div>
 </main>
-</body>
 
-</html>
 </body>
 </html>
