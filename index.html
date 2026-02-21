@@ -6,6 +6,61 @@
     <title>Assignment 4</title>
 </head>
 <body>
+    <!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+</head>
+
+<body>
+<header class="w-[90%] md:w-[80%] mx-auto py-8">
+    <h1 class="text-4xl font-bold text-indigo-800 mb-8">Job Application Tracker</h1>
     
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <div class="bg-white border border-gray-200 p-6 rounded-xl shadow-sm">
+            <p class="text-gray-500 font-semibold uppercase tracking-wider text-sm">Total Applications</p>
+            <p id="total" class="text-4xl font-black text-indigo-600 mt-2">8</p>
+        </div>
+
+        <div class="bg-white border border-gray-200 p-6 rounded-xl shadow-sm">
+            <p class="text-gray-500 font-semibold uppercase tracking-wider text-sm">Interviewing</p>
+            <p id="interviewCount" class="text-4xl font-black text-emerald-500 mt-2">0</p>
+        </div>
+
+        <div class="bg-white border border-gray-200 p-6 rounded-xl shadow-sm">
+            <p class="text-gray-500 font-semibold uppercase tracking-wider text-sm">Rejected</p>
+            <p id="rejectedCount" class="text-4xl font-black text-rose-500 mt-2">0</p>
+        </div>
+    </div>
+</header>
+
+<hr class="border-gray-200 my-4">
+
+<main class="w-[90%] md:w-[80%] mx-auto ">
+       <h4 class="text-4xl mt-[24px] mb-[24px] font-bold text-indigo-700 mb-8">Available Jobs</h4>
+    <div class="flex justify-between items-center mb-8">
+        <div class="flex p-1 bg-gray-100 rounded-lg gap-3">
+            <button id="all-filter-btn" 
+                class="px-6 py-2.5 rounded-md text-sm font-bold transition-all bg-indigo-600 text-white shadow-md">
+                All Jobs
+            </button>
+            <button id="interview-filter-btn" 
+                class="px-6 py-2.5 rounded-md text-sm font-bold transition-all text-gray-600 hover:bg-white hover:text-indigo-600">
+                Interview
+            </button>
+            <button id="rejected-filter-btn" 
+                class="px-6 py-2.5 rounded-md text-sm font-bold transition-all text-gray-600 hover:bg-white hover:text-indigo-600">
+                Rejected
+            </button>
+        </div>
+
+</main>
+</body>
+
+</html>
 </body>
 </html>
