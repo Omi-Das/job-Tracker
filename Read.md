@@ -44,7 +44,8 @@ appendChild() or append().
 
     Sol:
        
-        Event Bubbling is a process where an event starts from the element that was clicked and then moves upward to its parent elements in the DOM.
+        Event Bubbling is a process where an event starts from the element 
+        that was clicked and then moves upward to its parent elements in the DOM.
 
         It works like this:
 
