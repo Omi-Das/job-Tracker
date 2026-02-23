@@ -36,4 +36,18 @@ appendChild() or append().
 
     Create the element => Add content => Insert it into a parent element.
 
-    That’s how we add a new element to the DOM.
+    That's how we add a new element to the DOM.
+
+---------------------------------------------
+
+3.What is Event Bubbling? And how does it work?
+    Sol:
+        Event Bubbling is a process where an event starts from the element that was clicked and then moves upward to its parent elements in the DOM.
+
+        It works like this:
+
+     1...When you click on a child element (for example, a button inside a div),
+     2...first the event runs on the button,
+     3...then it moves to the parent div,
+     4...then to the body,
+     5...and keeps going up until it reaches the top of the document.
