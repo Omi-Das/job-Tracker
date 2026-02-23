@@ -73,3 +73,14 @@ we add one event listener to the parent element and then the parent handles even
   3...works for dynamically added elements
   4...easier to manage
   
+------------------------------------------------
+
+5.What is the difference between preventDefault() and stopPropagation() methods?
+
+ Sol:
+
+   1. preventDefault():
+                         Stops the browser's default action (like form submit or link open).
+
+   2. stopPropagation():
+                         Stops the event from going to parent elements (stops bubbling).
