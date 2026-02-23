@@ -41,7 +41,9 @@ appendChild() or append().
 ---------------------------------------------
 
 3.What is Event Bubbling? And how does it work?
+
     Sol:
+       
         Event Bubbling is a process where an event starts from the element that was clicked and then moves upward to its parent elements in the DOM.
 
         It works like this:
@@ -51,3 +53,19 @@ appendChild() or append().
      3...then it moves to the parent div,
      4...then to the body,
      5...and keeps going up until it reaches the top of the document.
+
+------------------------------------------------
+
+4.What is Event Delegation in JavaScript? Why is it useful?
+
+   sol:
+    
+    Event Delegation means instead of adding event listeners to many child elements,
+we add one event listener to the parent element and then the parent handles events for its children.
+
+  why it is useful:
+  1...we write less code
+  2...Better performance
+  3...works for dynamically added elements
+  4...easier to manage
+  
