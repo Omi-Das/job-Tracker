@@ -4,15 +4,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Job Tracker - Assignment 4</title>
-    <!-- Tailwind CSS (Fixed) -->
+    
 <script src="https://cdn.tailwindcss.com"></script>
 
-<!-- Google Fonts (Fixed) -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com" rel="stylesheet">
 
-<!-- Font Awesome (Optional kintu dorkar icon-er jonno) -->
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com" />
 
     
@@ -39,7 +37,7 @@
         </div>
     </header>
 
-    <hr class="w-[800px] mx-auto my-5">
+    <hr class="w-[1000px] mx-auto my-5">
 
     <main class="w-[90%] md:w-[80%] mx-auto pb-20">
         <div class="flex justify-between items-center mb-6">
@@ -50,14 +48,12 @@
             </div>
         </div>
 
-        <!-- Filter Tabs -->
         <div class="flex p-1 bg-gray-100 rounded-lg gap-2 w-fit mb-8">
-            <button id="all-filter-btn" onclick="toggleStyle('all-filter-btn')" class="px-6 py-2.5 rounded-md text-sm font-bold bg-black text-white">All Jobs</button>
-            <button id="interview-filter-btn" onclick="toggleStyle('interview-filter-btn')" class="px-6 py-2.5 rounded-md text-sm font-bold bg-gray-300">Interview</button>
-            <button id="rejected-filter-btn" onclick="toggleStyle('rejected-filter-btn')" class="px-6 py-2.5 rounded-md text-sm font-bold bg-gray-300">Rejected</button>
+            <button id="all-filter-btn" onclick="toggleStyle('all-filter-btn')" class="px-6 py-2.5 rounded-md text-sm font-bold bg-blue-500 text-white">All Jobs</button>
+            <button id="interview-filter-btn" onclick="toggleStyle('interview-filter-btn')" class="px-6 py-2.5 rounded-md text-sm font-bold bg-white">Interview</button>
+            <button id="rejected-filter-btn" onclick="toggleStyle('rejected-filter-btn')" class="px-6 py-2.5 rounded-md text-sm font-bold bg-white">Rejected</button>
         </div>
 
-        <!-- Main Card Section -->
         <section id="allCards" class="flex flex-col gap-6">
             <!-- Card 1 -->
             <div class="card bg-white border p-8 rounded-xl flex justify-between items-start">
@@ -68,7 +64,7 @@
                     <p class="description text-[#475569] text-sm">Developing responsive user interfaces for high-traffic apps.</p>
                     <div class="flex gap-3"><button class="interview-btn border border-emerald-500 text-emerald-500 px-4 py-1 text-xs font-bold uppercase rounded">Interview</button><button class="rejected-btn border border-rose-500 text-rose-500 px-4 py-1 text-xs font-bold uppercase rounded">Rejected</button></div>
                 </div>
-                <button class="delete-btn opacity-30 hover:opacity-100"><img src="Vector.png" class="w-4 h-4" alt="Delete"></button>
+                <button class="delete-btn opacity-500 hover:opacity-50 border-2 p-2 rounded-full "><img src="./images/Vector.png" class="w-4 h-4" alt="Delete"></button>
             </div>
             <!-- Card 2 -->
             <div class="card bg-white border p-8 rounded-xl flex justify-between items-start">
@@ -79,7 +75,7 @@
                     <p class="description text-[#475569] text-sm">Building data pipelines and integrating machine learning models.</p>
                     <div class="flex gap-3"><button class="interview-btn border border-emerald-500 text-emerald-500 px-4 py-1 text-xs font-bold uppercase rounded">Interview</button><button class="rejected-btn border border-rose-500 text-rose-500 px-4 py-1 text-xs font-bold uppercase rounded">Rejected</button></div>
                 </div>
-                <button class="delete-btn opacity-30"><img src="Vector.png" class="w-4 h-4" alt="Delete"></button>
+                <button class="delete-btn opacity-500 hover:opacity-50 border-2 p-2 rounded-full "><img src="./images/Vector.png" class="w-4 h-4" alt="Delete"></button>
             </div>
             <!-- Card 3 -->
             <div class="card bg-white border p-8 rounded-xl flex justify-between items-start">
@@ -90,7 +86,7 @@
                     <p class="description text-[#475569] text-sm">Designing marketing assets and social media content.</p>
                     <div class="flex gap-3"><button class="interview-btn border border-emerald-500 text-emerald-500 px-4 py-1 text-xs font-bold uppercase rounded">Interview</button><button class="rejected-btn border border-rose-500 text-rose-500 px-4 py-1 text-xs font-bold uppercase rounded">Rejected</button></div>
                 </div>
-                <button class="delete-btn opacity-30"><img src="Vector.png" class="w-4 h-4" alt="Delete"></button>
+                <button class="delete-btn opacity-500 hover:opacity-50 border-2 p-2 rounded-full "><img src="./images/Vector.png" class="w-4 h-4" alt="Delete"></button>
             </div>
             <!-- Card 4 -->
             <div class="card bg-white border p-8 rounded-xl flex justify-between items-start">
@@ -101,7 +97,7 @@
                     <p class="description text-[#475569] text-sm">Monitoring network traffic and implementing security protocols.</p>
                     <div class="flex gap-3"><button class="interview-btn border border-emerald-500 text-emerald-500 px-4 py-1 text-xs font-bold uppercase rounded">Interview</button><button class="rejected-btn border border-rose-500 text-rose-500 px-4 py-1 text-xs font-bold uppercase rounded">Rejected</button></div>
                 </div>
-                <button class="delete-btn opacity-30"><img src="Vector.png" class="w-4 h-4" alt="Delete"></button>
+                <button class="delete-btn opacity-500 hover:opacity-50 border-2 p-2 rounded-full "><img src="./images/Vector.png" class="w-4 h-4" alt="Delete"></button>
             </div>
             <!-- Card 5 -->
             <div class="card bg-white border p-8 rounded-xl flex justify-between items-start">
@@ -112,7 +108,7 @@
                     <p class="description text-[#475569] text-sm">Analyzing healthcare datasets to improve patient outcomes.</p>
                     <div class="flex gap-3"><button class="interview-btn border border-emerald-500 text-emerald-500 px-4 py-1 text-xs font-bold uppercase rounded">Interview</button><button class="rejected-btn border border-rose-500 text-rose-500 px-4 py-1 text-xs font-bold uppercase rounded">Rejected</button></div>
                 </div>
-                <button class="delete-btn opacity-30"><img src="Vector.png" class="w-4 h-4" alt="Delete"></button>
+                <button class="delete-btn opacity-500 hover:opacity-50 border-2 p-2 rounded-full "><img src="./images/Vector.png" class="w-4 h-4" alt="Delete"></button>
             </div>
             <!-- Card 6 -->
             <div class="card bg-white border p-8 rounded-xl flex justify-between items-start">
@@ -123,7 +119,7 @@
                     <p class="description text-[#475569] text-sm">Defining product roadmaps for learning platforms.</p>
                     <div class="flex gap-3"><button class="interview-btn border border-emerald-500 text-emerald-500 px-4 py-1 text-xs font-bold uppercase rounded">Interview</button><button class="rejected-btn border border-rose-500 text-rose-500 px-4 py-1 text-xs font-bold uppercase rounded">Rejected</button></div>
                 </div>
-                <button class="delete-btn opacity-30"><img src="./images/Vector.png" class="w-4 h-4" alt="Delete"></button>
+                <button class="delete-btn opacity-500 hover:opacity-50 border-2 p-2 rounded-full "><img src="./images/Vector.png" class="w-4 h-4" alt="Delete"></button>
             </div>
             <!-- Card 7 -->
             <div class="card bg-white border p-8 rounded-xl flex justify-between items-start">
@@ -134,7 +130,7 @@
                     <p class="description text-[#475569] text-sm">Developing gameplay mechanics for PC and mobile titles.</p>
                     <div class="flex gap-3"><button class="interview-btn border border-emerald-500 text-emerald-500 px-4 py-1 text-xs font-bold uppercase rounded">Interview</button><button class="rejected-btn border border-rose-500 text-rose-500 px-4 py-1 text-xs font-bold uppercase rounded">Rejected</button></div>
                 </div>
-                <button class="delete-btn opacity-30"><img src="Vector.png" class="w-4 h-4" alt="Delete"></button>
+                <button class="delete-btn opacity-500 hover:opacity-50 border-2 p-2 rounded-full 30"><img src="./images/Vector.png" class="w-4 h-4" alt="Delete"></button>
             </div>
             <!-- Card 8 -->
             <div class="card bg-white border p-8 rounded-xl flex justify-between items-start">
@@ -145,8 +141,8 @@
                     <p class="description text-[#475569] text-sm">Automating infrastructure and maintaining CI/CD pipelines.</p>
                     <div class="flex gap-3"><button class="interview-btn border border-emerald-500 text-emerald-500 px-4 py-1 text-xs font-bold uppercase rounded">Interview</button><button class="rejected-btn border border-rose-500 text-rose-500 px-4 py-1 text-xs font-bold uppercase rounded">Rejected</button></div>
                 </div>
-                <button class="delete-btn opacity-30"><img src="Vector.png" class="w-4 h-4" alt="Delete"></button>
-            </div>
+                    <button class="delete-btn opacity-500 hover:opacity-50 border-2 p-2 rounded-full "><img src="./images/Vector.png" class="w-4 h-4" alt="Delete"></button>
+                </div>
         </section>
 
         <!-- Dynamic Render Section
@@ -154,7 +150,7 @@
         <section id="filtered-section" class="hidden gap-6"></section>
         <!-- Empty Message -->
         <div id="empty-message" class="hidden mx-auto text-center mt-20">
-            <img src="jobs.png" class="mx-auto mb-2 w-24">
+            <img src="./images/jobs.png" class="mx-auto mb-2 w-24 ">
             <h2 class="text-xl font-semibold text-gray-400">No Jobs Available</h2>
             <p class="text-xl text-gray-400 text-light">Check back soon for new job opportunities</p>
         </div>

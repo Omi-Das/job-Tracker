@@ -32,38 +32,66 @@ function calculateCount() {
     }
 
     tabJobCount.innerText = currentViewCount;
-    // Show empty message if count is 0
-    if (currentViewCount === 0) emptyMsg.classList.remove('hidden');
+    if (currentViewCount === 0)
+         emptyMsg.classList.remove('hidden');
     else emptyMsg.classList.add('hidden');
 }
 
 function toggleStyle(id) {
     currentStatus = id;
     
-    // Reset all buttons to gray (Manual reset is safer than .replace)
-    [allFilterBtn, interviewFilterBtn, rejectedFilterBtn].forEach(btn => {
-        btn.classList.remove('bg-black', 'text-white');
-        btn.classList.add('bg-gray-300', 'text-black');
-    });
+    // // 1. Reset all buttons manually
+    // allFilterBtn.classList.remove('bg-blue-500', 'text-white');
+    // allFilterBtn.classList.add('bg-white', 'text-[#64748B]');
 
-    // Make selected button black
-    const selected = document.getElementById(id);
-    selected.classList.remove('bg-gray-300', 'text-black');
-    selected.classList.add('bg-black', 'text-white');
+    // interviewFilterBtn.classList.remove('bg-blue-500', 'text-white');
+    // interviewFilterBtn.classList.add('bg-white', 'text-[#64748B]');
 
+    // rejectedFilterBtn.classList.remove('bg-blue', 'text-white');
+    // rejectedFilterBtn.classList.add('bg-white', 'text-[#64748B]');
+
+    // // 2. Highlight selected button
+    // const selected = document.getElementById(id);
+    // selected.classList.remove('bg-white', 'text-[#64748B]');
+    // selected.classList.add('bg-blue-500', 'text-white');
+// 1. Reset all buttons manually
+allFilterBtn.classList.remove('bg-blue-500', 'text-white');
+allFilterBtn.classList.add('bg-white', 'text-[#64748B]');
+
+interviewFilterBtn.classList.remove('bg-blue-500', 'text-white');
+interviewFilterBtn.classList.add('bg-white', 'text-[#64748B]');
+
+// Fixed the 'bg-blue' typo here to 'bg-blue-500'
+rejectedFilterBtn.classList.remove('bg-blue-500', 'text-white'); 
+rejectedFilterBtn.classList.add('bg-white', 'text-[#64748B]');
+
+// 2. Set the selected button (Example: Blue style)
+const selected = document.getElementById(id);
+selected.classList.remove('bg-white', 'text-[#64748B]');
+selected.classList.add('bg-blue-500', 'text-white');
+
+    // 3. Handle Section Visibility (Fixing the hidden/flex conflict)
     if (id === 'all-filter-btn') {
         allCardSection.classList.remove('hidden');
+        allCardSection.classList.add('flex'); 
         filterSection.classList.add('hidden');
+        filterSection.classList.remove('flex');
     } else {
         allCardSection.classList.add('hidden');
+        allCardSection.classList.remove('flex');
         filterSection.classList.remove('hidden');
-        id === 'interview-filter-btn' ? renderInterview() : renderRejected();
+        filterSection.classList.add('flex');
+
+        if (id === 'interview-filter-btn') {
+            renderInterview();
+        } else {
+            renderRejected();
+        }
     }
     calculateCount();
 }
 
 mainContainer.addEventListener('click', function (event) {
-    // 1. Handle Interview and Rejected clicks
     if (event.target.classList.contains('interview-btn') || event.target.classList.contains('rejected-btn')) {
         const parent = event.target.closest('.card');
         
@@ -76,33 +104,33 @@ mainContainer.addEventListener('click', function (event) {
         };
 
         if (event.target.classList.contains('interview-btn')) {
-            // Add to Interview, Remove from Rejected
             if (!interviewList.find(i => i.company === jobData.company)) interviewList.push(jobData);
             rejectedList = rejectedList.filter(i => i.company !== jobData.company);
-            // Update status text on the "All Jobs" version of the card
-            if(parent.querySelector('.status-text')) parent.querySelector('.status-text').innerText = 'Interview';
+            if(parent.querySelector('.status-text')) {
+                const status = parent.querySelector('.status-text');
+                status.innerText = 'Interview';
+                status.className = 'status-text bg-emerald-50 text-emerald-600 px-2 py-1 rounded text-[10px] font-bold uppercase inline-block';
+            }
         } else {
-            // Add to Rejected, Remove from Interview
             if (!rejectedList.find(i => i.company === jobData.company)) rejectedList.push(jobData);
             interviewList = interviewList.filter(i => i.company !== jobData.company);
-            if(parent.querySelector('.status-text')) parent.querySelector('.status-text').innerText = 'Rejected';
+            if(parent.querySelector('.status-text')) {
+                const status = parent.querySelector('.status-text');
+                status.innerText = 'Rejected';
+                status.className = 'status-text bg-rose-50 text-rose-600 px-2 py-1 rounded text-[10px] font-bold uppercase inline-block';
+            }
         }
 
-        // Re-render the current view
         if (currentStatus === 'interview-filter-btn') renderInterview();
         if (currentStatus === 'rejected-filter-btn') renderRejected();
         calculateCount();
     }
     
-    // 2. Handle Delete click
     if (event.target.closest('.delete-btn')) {
         const parent = event.target.closest('.card');
         const companyName = parent.querySelector('.company-name').innerText;
         
-        // Remove from the DOM
         parent.remove();
-        
-        // Remove from both lists
         interviewList = interviewList.filter(i => i.company !== companyName);
         rejectedList = rejectedList.filter(i => i.company !== companyName);
         
@@ -124,7 +152,6 @@ function renderRejected() {
 
 function createCard(job, status, color) {
     let div = document.createElement('div');
-    // Ensure styles match your original cards
     div.className = 'card bg-white border border-gray-100 p-8 rounded-xl shadow-sm flex justify-between items-start';
     div.innerHTML = `
         <div class="space-y-4 flex-1">
@@ -147,5 +174,4 @@ function createCard(job, status, color) {
     return div;
 }
 
-// Run once on load
 calculateCount();
