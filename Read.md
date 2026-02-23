@@ -23,13 +23,13 @@ querySelectorAll => all matches
 2.How do you create and insert a new element into the DOM?
   sol:
 
-    1) we create the element using
+ 1) we create the element using
 document.createElement().
 
-    2) we add content to it using
+ 2) we add content to it using
 innerText or innerHTML.
 
-    3) we insert it into the page using
+ 3) we insert it into the page using
 appendChild() or append().
 
    So, in short:
@@ -49,9 +49,13 @@ appendChild() or append().
         It works like this:
 
      1...When you click on a child element (for example, a button inside a div),
+     
      2...first the event runs on the button,
+    
      3...then it moves to the parent div,
+    
      4...then to the body,
+     
      5...and keeps going up until it reaches the top of the document.
 
 ------------------------------------------------
