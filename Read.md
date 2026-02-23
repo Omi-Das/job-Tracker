@@ -17,3 +17,23 @@ Class => many elements
 querySelector => first match
 
 querySelectorAll => all matches
+
+--------------------------------------------------------
+
+2.How do you create and insert a new element into the DOM?
+  sol:
+
+    1) we create the element using
+document.createElement().
+
+    2) we add content to it using
+innerText or innerHTML.
+
+    3) we insert it into the page using
+appendChild() or append().
+
+   So, in short:
+
+    Create the element => Add content => Insert it into a parent element.
+
+    That’s how we add a new element to the DOM.
