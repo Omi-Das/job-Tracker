@@ -37,13 +37,6 @@ function calculateCount() {
         }
     }
 
-    // if (currentViewCount === 0) {
-    //     emptyMsg.classList.remove('hidden');
-    //     emptyMsg.classList.add('flex');
-    // } else {
-    //     emptyMsg.classList.add('hidden');
-    //     emptyMsg.classList.remove('flex');
-    // }
     if (currentViewCount === 0) {
         emptyMsg.classList.remove('hidden');
         emptyMsg.classList.add('flex', 'flex-col', 'items-center','space-y-4'); 
@@ -56,14 +49,10 @@ function calculateCount() {
 function toggleStyle(id) {
     currentStatus = id;
 
-    allFilterBtn.classList.remove('bg-blue-500', 'text-white');
-    allFilterBtn.classList.add('bg-white', 'text-[#64748B]');
-
-    interviewFilterBtn.classList.remove('bg-blue-500', 'text-white');
-    interviewFilterBtn.classList.add('bg-white', 'text-[#64748B]');
-
-    rejectedFilterBtn.classList.remove('bg-blue-500', 'text-white'); 
-    rejectedFilterBtn.classList.add('bg-white', 'text-[#64748B]');
+    [allFilterBtn, interviewFilterBtn, rejectedFilterBtn].forEach(btn => {
+        btn.classList.remove('bg-blue-500', 'text-white');
+        btn.classList.add('bg-white', 'text-[#64748B]');
+    });
 
     const selected = document.getElementById(id);
     selected.classList.remove('bg-white', 'text-[#64748B]');
@@ -86,12 +75,33 @@ function toggleStyle(id) {
     calculateCount();
 }
 
+
+function updateStatusInAllTab(companyName, status, color) {
+    const allCards = allCardSection.querySelectorAll('.card');
+    allCards.forEach(card => {
+        const nameInAll = card.querySelector('.company-name').innerText;
+        if (nameInAll === companyName) {
+            let statusLabel = card.querySelector('.status-text');
+           
+            if (!statusLabel) {
+                statusLabel = document.createElement('span');
+                card.querySelector('.job-title').after(statusLabel);
+            }
+            statusLabel.innerText = status;
+            statusLabel.className = `status-text bg-${color}-50 text-${color}-600 px-2 py-1 rounded text-[10px] font-bold uppercase inline-block mb-2`;
+        }
+    });
+}
+
 mainContainer.addEventListener('click', function (event) {
-    if (event.target.classList.contains('interview-btn') || event.target.classList.contains('rejected-btn')) {
-        const parent = event.target.closest('.card');
+    const target = event.target;
+    
+    if (target.classList.contains('interview-btn') || target.classList.contains('rejected-btn')) {
+        const parent = target.closest('.card');
+        const companyName = parent.querySelector('.company-name').innerText;
         
         const jobData = {
-            company: parent.querySelector('.company-name').innerText,
+            company: companyName,
             title: parent.querySelector('.job-title').innerText,
             location: parent.querySelector('.location').innerText,
             type: parent.querySelector('.type').innerText,
@@ -99,24 +109,19 @@ mainContainer.addEventListener('click', function (event) {
             description: parent.querySelector('.description').innerText
         };
 
-        const statusLabel = parent.querySelector('.status-text');
-
-        if (event.target.classList.contains('interview-btn')) {
+        if (target.classList.contains('interview-btn')) {
+            
             if (!interviewList.find(i => i.company === jobData.company)) interviewList.push(jobData);
             rejectedList = rejectedList.filter(i => i.company !== jobData.company);
             
-            if(statusLabel) {
-                statusLabel.innerText = 'Interview';
-                statusLabel.className = 'status-text bg-emerald-50 text-emerald-600 px-2 py-1 rounded text-[10px] font-bold uppercase inline-block';
-            }
+           
+            updateStatusInAllTab(companyName, 'Interview', 'emerald');
         } else {
+            // লিস্ট আপডেট
             if (!rejectedList.find(i => i.company === jobData.company)) rejectedList.push(jobData);
             interviewList = interviewList.filter(i => i.company !== jobData.company);
-            
-            if(statusLabel) {
-                statusLabel.innerText = 'Rejected';
-                statusLabel.className = 'status-text bg-rose-50 text-rose-600 px-2 py-1 rounded text-[10px] font-bold uppercase inline-block';
-            }
+         
+            updateStatusInAllTab(companyName, 'Rejected', 'rose');
         }
 
         if (currentStatus === 'interview-filter-btn') renderInterview();
@@ -124,11 +129,19 @@ mainContainer.addEventListener('click', function (event) {
         calculateCount();
     }
     
-    if (event.target.closest('.delete-btn')) {
-        const parent = event.target.closest('.card');
+    if (target.closest('.delete-btn')) {
+        const parent = target.closest('.card');
         const companyName = parent.querySelector('.company-name').innerText;
         
+       
+        const allCards = allCardSection.querySelectorAll('.card');
+        allCards.forEach(card => {
+            if(card.querySelector('.company-name').innerText === companyName) card.remove();
+        });
+
+
         parent.remove();
+
         interviewList = interviewList.filter(i => i.company !== companyName);
         rejectedList = rejectedList.filter(i => i.company !== companyName);
         
@@ -150,26 +163,27 @@ function renderRejected() {
 
 function createCard(job, status, color) {
     let div = document.createElement('div');
-    div.className = 'card bg-white border p-8 rounded-xl flex justify-between items-start mb-4';
+    div.className = 'card bg-white border p-8 rounded-xl flex justify-between items-start mb-4 w-full';
     div.innerHTML = `
         <div class="space-y-4 flex-1">
             <div>
                 <h2 class="company-name text-xl font-bold text-[#1e3a8a]">${job.company}</h2>
-                <p class="job-title text-gray-500 text-sm">${job.title}</p>
+                <p class="job-title text-gray-500 text-sm mb-2">${job.title}</p>
+                <span class="status-text bg-${color}-50 text-${color}-600 px-2 py-1 rounded text-[10px] font-bold uppercase inline-block">${status}</span>
             </div>
             <div class="flex gap-2 text-sm text-[#94a3b8]">
                 <span class="location">${job.location}</span> • <span class="type">${job.type}</span> • <span class="salary">${job.salary}</span>
             </div>
-            <span class="status-text bg-${color}-50 text-${color}-600 px-2 py-1 rounded text-[10px] font-bold uppercase inline-block">${status}</span>
             <p class="description text-[#475569] text-sm">${job.description}</p>
             <div class="flex gap-3">
                 <button class="interview-btn bg-white border font-semibold border-green-500 text-green-500 px-4 py-1 rounded-md text-[14px] uppercase hover:bg-green-500 hover:text-white transition-all">INTERVIEW</button>
                 <button class="rejected-btn bg-white border font-semibold border-red-500 text-red-500 px-4 py-1 rounded-md text-[14px] uppercase hover:bg-red-500 hover:text-white transition-all">REJECTED</button>
             </div>
         </div>
-        <button class="delete-btn opacity-50 border-2 p-2 rounded-full hover:opacity-100"><img src="./images/Vector.png" class="w-4 h-4" alt="Delete"></button>`;
+        <button class="delete-btn opacity-50 border-2 p-2 rounded-full hover:opacity-100">
+            <img src="./images/Vector.png" class="w-4 h-4" alt="Delete">
+        </button>`;
     return div;
 }
 
 calculateCount();
-
